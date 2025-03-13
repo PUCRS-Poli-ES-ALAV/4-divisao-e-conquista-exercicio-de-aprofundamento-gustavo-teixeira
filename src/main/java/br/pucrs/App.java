@@ -38,7 +38,7 @@ class Sort{
          if(array.size() == 1){
              return array;   
          }
- 
+         
          List<Integer> left = mergeSort(array.subList(0, (array.size()/2)-1));
          List<Integer> right = mergeSort(array.subList(array.size()/2, array.size()-1));
  
