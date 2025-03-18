@@ -13,67 +13,66 @@ import java.util.Random;
 {
     public static void main( String[] args )
     {
-        ArrayList<Integer> arr = new ArrayList<>();
+        List<Integer> arr = new ArrayList<>();
         Sort s = new Sort();
         Random r = new Random();
-        for(int i = 0; i < 1000; i++){
-            arr.add(r.nextInt(1000));
+
+        for(int i = 0; i < 1048576; i++){
+            arr.add(r.nextInt(1048576));
         }
 
-        System.out.println(arr);
         System.out.println("ORDENANDO");
-        s.mergeSort(arr);
-        System.out.println(arr);
 
-    }
-}
+        long start = System.nanoTime();
+        arr = s.mergeSort(arr);
+        long end = (System.nanoTime() - start);
+        System.out.printf("%.12f s\n", end*1e-9);
+
+        long A [] = new long[1048576];
+        
+        for(int i = 0; i < 1048576; i++){
+            A[i] = r.nextInt(1048576);        
+        }
+
+        start = System.nanoTime();
+        long max = FindMax.maxVal(A, A.length);
+        end = System.nanoTime() - start;
+
+        System.out.printf("find max 1 : %d, tempo: %.12f s\n", max, end*1e-9);
+
+        for(int i = 0; i <1048576; i++){
+            A[i] = r.nextInt(1048576);        
+        }
+        FindMax m = new FindMax();
+
+        start = System.nanoTime();
+
+        m.maxVal2(A,0, A.length-1);
+
+        end = System.nanoTime() - start;
+
+        System.out.printf("find max val 2 : %d, tempo: %.12f s\n", max, end*1e-9);
+        
+        Multiply mul = new Multiply();
+
+        start = System.nanoTime();
+        mul.multiply(3, 4, 44);
+        end = System.nanoTime() - start;
+        System.out.printf("tempo levado para 4 bits %.12f s \n", end*1e-9);
+
+        start = System.nanoTime();
+        mul.multiply(3, 4, 16);
+        end = System.nanoTime() - start;
+        System.out.printf("tempo levado para 16 bits %.12f s \n", end*1e-9);
+
+        start = System.nanoTime();
+        mul.multiply(2, 120312090, 64);
+        end = System.nanoTime() - start;
+        System.out.printf("tempo levado para 64 bits %.12f s \n", end*1e-9);
 
 
 
-class Sort{
-    public Sort(){
-    } 
- 
-    public List<Integer> mergeSort(List<Integer> array){
-         if(array.size() == 1){
-             return array;   
-         }
-         
-         List<Integer> left = mergeSort(array.subList(0, (array.size()/2)-1));
-         List<Integer> right = mergeSort(array.subList(array.size()/2, array.size()-1));
- 
-         List<Integer> list = merge(left,right);
- 
-         return list;
-    }
-     
- 
-    private List<Integer> merge(List<Integer> left, List<Integer> right){
-         List<Integer> list = new ArrayList<>();
- 
-         int j = 0;
-         int k = 0;
- 
- 
-         while(j < left.size() && k < right.size()){
-             if(left.get(j) > right.get(k)){
-                 list.add(right.get(k));
-                 k++;
-             }else if(left.get(j) <= right.get(k)){
-                 list.add(left.get(j));
-                 j++;
-             }
-         }
- 
-         if(j == left.size()){
-             list.addAll(left);
-         }
-         if(k == right.size()){
-             list.addAll(right);
-         }
- 
- 
-         return list;
- 
+
+        
     }
 }
