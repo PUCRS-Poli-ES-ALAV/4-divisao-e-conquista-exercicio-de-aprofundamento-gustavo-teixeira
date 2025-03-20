@@ -69,10 +69,13 @@ import java.util.Random;
         mul.multiply(2, 120312090, 64);
         end = System.nanoTime() - start;
         System.out.printf("tempo levado para 64 bits %.12f s \n", end*1e-9);
-
-
-
-
         
+        String x = "0100";
+        String y = "0100";
+
+        System.out.println(mul.multiply(x, y, x.length()));
+
+
+
     }
 }
