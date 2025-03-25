@@ -4,13 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Sort {
-   public Sort(){
+    public int iterations = 0;
+
+    public Sort(){
    } 
 
    public List<Integer> mergeSort(List<Integer> array){
         if(array.size() == 1){
             return array;   
-        }       
+        }     
+        iterations++;
+
 
         
         List<Integer> left = new ArrayList<>();
@@ -37,7 +41,7 @@ public class Sort {
 
    private List<Integer> merge(List<Integer> left, List<Integer> right){
         List<Integer> list = new ArrayList<>();
-
+        iterations++;
 
         int j = 0;
         int k = 0;

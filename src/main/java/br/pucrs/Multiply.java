@@ -1,10 +1,13 @@
 package br.pucrs;
 
 public class Multiply {
+    public int it = 0;
+
     public Multiply(){
     }
 
     public long multiply(long x, long y, int nBits){
+        it++;
         if(nBits == 1){
             return x*y;
         }
@@ -32,6 +35,7 @@ public class Multiply {
     }
 
     public long multiply(String x, String y, int size){
+        it++;
         if(size == 1){
             return Integer.parseInt(x) * Integer.parseInt(y);
         }        
